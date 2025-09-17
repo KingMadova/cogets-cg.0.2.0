@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COGETS CONGO - Solutions Industrielles</title>
+
+    <!-- Style intégré -->
+    <style>
+      /* RESET ET STYLES DE BASE */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Rubik", sans-serif;
+      }
+
+      :root {
+        --primary-color: #1e3a8a;
+        --secondary-color: #f59e0b;
+        --dark-color: #1f2937;
+        --light-color: #f8f9fa;
+        --gray-color: #6b7280;
+        --transition: all 0.3s ease;
+      }
+
+      body {
+        background-color: #fff;
+        color: var(--dark-color);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--dark-color);
+        text-align: center;
+      }
+
+      .section-subtitle {
+        display: block;
+        font-size: 1.1rem;
+        color: var(--primary-color);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .section-text {
+        font-size: 1.1rem;
+        color: var(--gray-color);
+        max-width: 700px;
+        margin: 0 auto 40px;
+        text-align: center;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: var(--transition);
+        border: 2px solid var(--primary-color);
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .btn:hover {
+        background-color: transparent;
+        color: var(--primary-color);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+      }
+
+      .btn-outline:hover {
+        background-color: white;
+        color: var(--primary-color);
+      }
+
+      /* HEADER */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 20px 0;
+      }
+
+      .header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .navbar {
+        display: flex;
+      }
+
+      .navbar-list {
+        display: flex;
+        list-style: none;
+      }
+
+      .navbar-item {
+        margin-left: 30px;
+      }
+
+      .navbar-link {
+        color: var(--dark-color);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: var(--transition);
+        position: relative;
+        padding: 5px 0;
+      }
+
+      .navbar-link:hover,
+      .navbar-link.active {
+        color: var(--primary-color);
+      }
+
+      .navbar-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .navbar-link:hover::after,
+      .navbar-link.active::after {
+        width: 100%;
+      }
+
+      .header-contact {
+        display: flex;
+        align-items: center;
+        background-color: var(--primary-color);
+        padding: 9px 18px;
+        border-radius: 6px;
+        color: white;
+      }
+
+      .contact-label {
+        font-size: 0.9rem;
+        margin-right: 10px;
+        text-transform: uppercase;
+      }
+
+      .contact-number {
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .contact-icon {
+        margin-left: 10px;
+        font-size: 1.2rem;
+      }
+
+      .nav-toggle {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: var(--primary-color);
+      }
+
+      /* Menu mobile */
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 300px;
+        height: 100vh;
+        background-color: white;
+        z-index: 1001;
+        transition: var(--transition);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        padding: 80px 20px 20px;
+        overflow-y: auto;
+      }
+
+      .mobile-menu.active {
+        right: 0;
+      }
+
+      .mobile-menu .navbar-list {
+        display: block;
+      }
+
+      .mobile-menu .navbar-item {
+        margin: 0 0 15px 0;
+      }
+
+      .mobile-menu .navbar-link {
+        display: block;
+        padding: 10px 15px;
+        border-radius: 6px;
+        background-color: #f5f5f5;
+      }
+
+      .mobile-menu .navbar-link:hover {
+        background-color: #e9e9e9;
+      }
+
+      .mobile-menu .header-contact {
+        margin-top: 20px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        display: none;
+      }
+
+      .menu-overlay.active {
+        display: block;
+      }
+
+      .close-menu {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        color: var(--primary-color);
+        cursor: pointer;
+      }
+
+      /* HERO SECTION */
+      .hero {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+          ),
+          url("assets/images/hero-banner.jpg");
+        background-size: cover;
+        background-position: center;
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: white;
+        margin-top: 80px;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .hero-text {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+      }
+
+      /* ABOUT SECTION */
+      .about-section {
+        background-color: var(--light-color);
+      }
+
+      .about-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .about-image {
+        flex: 1;
+        min-width: 300px;
+        position: relative;
+      }
+
+      .about-image img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-badge {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        font-weight: 700;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-content {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .about-list {
+        list-style: none;
+        margin: 20px 0;
+      }
+
+      .about-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .about-icon {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(30, 58, 138, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        color: var(--primary-color);
+      }
+
+      /* SERVICES SECTION */
+      .services-section {
+        background-color: white;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .service-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .service-card:hover .service-image img {
+        transform: scale(1.1);
+      }
+
+      .service-content {
+        padding: 25px;
+      }
+
+      .service-number {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .service-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--dark-color);
+      }
+
+      .service-text {
+        color: var(--gray-color);
+        margin-bottom: 20px;
+      }
+
+      .service-link {
+        display: inline-flex;
+        align-items: center;
+        color: var(--primary-color);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .service-link i {
+        margin-left: 5px;
+        transition: var(--transition);
+      }
+
+      .service-link:hover i {
+        transform: translateX(5px);
+      }
+
+      /* FEATURES SECTION */
+      .features-section {
+        background-color: var(--light-color);
+      }
+
+      .features-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+      }
+
+      .feature-card {
+        flex: 1;
+        min-width: 300px;
+        background-color: white;
+        border-radius: 8px;
+        padding: 40px 30px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        background-color: rgba(30, 58, 138, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--primary-color);
+      }
+
+      .feature-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+
+      .feature-text {
+        color: var(--gray-color);
+      }
+
+      /* PROJECTS SECTION */
+      .projects-section {
+        background-color: white;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .project-card {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .project-image {
+        height: 250px;
+        overflow: hidden;
+      }
+
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .project-card:hover .project-image img {
+        transform: scale(1.1);
+      }
+
+      .project-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        color: white;
+        transform: translateY(100%);
+        transition: var(--transition);
+      }
+
+      .project-card:hover .project-overlay {
+        transform: translateY(0);
+      }
+
+      .project-title {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+      }
+
+      .project-category {
+        color: var(--secondary-color);
+        font-weight: 600;
+      }
+
+      /* FOOTER */
+      .footer {
+        background-color: var(--dark-color);
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-top {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-brand {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .footer-logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      .footer-text {
+        margin-bottom: 20px;
+      }
+
+      .social-list {
+        display: flex;
+        list-style: none;
+        gap: 15px;
+      }
+
+      .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        transition: var(--transition);
+      }
+
+      .social-link:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer-list {
+        min-width: 200px;
+      }
+
+      .footer-list-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-list-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 30px;
+        height: 2px;
+        background-color: var(--secondary-color);
+      }
+
+      .footer-list li {
+        margin-bottom: 10px;
+      }
+
+      .footer-link {
+        color: #d1d5db;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-link:hover {
+        color: white;
+        padding-left: 5px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .copyright {
+        color: #9ca3af;
+      }
+
+      .copyright-link {
+        color: var(--secondary-color);
+        text-decoration: none;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 992px) {
+        .section {
+          padding: 60px 0;
+        }
+
+        .section-title {
+          font-size: 2.2rem;
+        }
+
+        .hero-title {
+          font-size: 2.8rem;
+        }
+
+        .header-contact {
+          display: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          display: none;
+        }
+
+        .nav-toggle {
+          display: block;
+        }
+
+        .hero {
+          height: 60vh;
+        }
+
+        .hero-title {
+          font-size: 2.2rem;
+        }
+
+        .hero-text {
+          font-size: 1rem;
+        }
+
+        .about-container {
+          flex-direction: column;
+        }
+
+        .about-image {
+          order: -1;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .section {
+          padding: 40px 0;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .section-subtitle {
+          font-size: 0.9rem;
+        }
+
+        .hero-title {
+          font-size: 1.8rem;
+        }
+
+        .footer-top {
+          flex-direction: column;
+          gap: 30px;
+        }
+      }
+    </style>
+
+    <!-- Font Awesome pour les icônes -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+        <!-- Favicon classique -->
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+<!-- Icônes PNG pour navigateurs -->
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
+
+<!-- Icône Apple iOS -->
+<link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
+
+<!-- Icônes Android -->
+<link rel="icon" type="image/png" sizes="192x192" href="./assets/images/favicon/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./assets/images/favicon/android-chrome-512x512.png">
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="container">
+        <h1>
+          <a href="index.html" class="logo">COGETS CONGO</a>
+        </h1>
+
+        <nav class="navbar">
+          <ul class="navbar-list">
+            <li class="navbar-item">
+              <a href="index.html" class="navbar-link active">Accueil</a>
+            </li>
+            <li class="navbar-item">
+              <a href="#services" class="navbar-link">Services</a>
+            </li>
+            <li class="navbar-item">
+              <a href="galerie.html" class="navbar-link">Galerie</a>
+            </li>
+            <li class="navbar-item">
+              <a href="qui_sommes.html" class="navbar-link">Qui sommes-nous</a>
+            </li>
+            <li class="navbar-item">
+              <a href="contact.html" class="navbar-link">Contact</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-contact">
+          <div>
+            <!-- <p class="contact-label"><a href="contact.html">Nous contacter</a></p> -->
+            <a href="tel:+242050429893" class="contact-number">050429893</a>
+            <br/>
+            <a href="tel:+242066616733" class="contact-number">066616733</a>
+          </div>
+          <div class="contact-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+        </div>
+
+        <button class="nav-toggle" id="navToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Menu Mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+      <button class="close-menu" id="closeMenu">
+        <i class="fas fa-times"></i>
+      </button>
+      <ul class="navbar-list">
+        <li class="navbar-item">
+          <a href="index.html" class="navbar-link active">Accueil</a>
+        </li>
+        <li class="navbar-item">
+          <a href="#services" class="navbar-link">Services</a>
+        </li>
+        <li class="navbar-item">
+          <a href="galerie.html" class="navbar-link">Galerie</a>
+        </li>
+        <li class="navbar-item">
+          <a href="qui_sommes.html" class="navbar-link">Qui sommes-nous</a>
+        </li>
+        <li class="navbar-item">
+          <a href="contact.html" class="navbar-link">Contact</a>
+        </li>
+      </ul>
+      <div class="header-contact">
+        <div>
+          <!-- <p class="contact-label"><a href="contact.html">Nous contacter<a/></p> -->
+          <a href="tel:+242050429893" class="contact-number">050429893</a>
+            <br/>
+            <a href="tel:+242066616733" class="contact-number">066616733</a>
+        </div>
+        <div class="contact-icon">
+          <i class="fas fa-phone-alt"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Solutions Industrielles <span>Onshore & Offshore</span>
+          </h1>
+          <p class="hero-text">
+            Votre partenaire en solutions industrielles depuis 2014. Expertise
+            en résinage, plomberie, chaudronnerie et plus encore...
+          </p>
+          <div class="hero-buttons">
+            <a href="./assets/docs/plaquette-commerciale-cogets.pdf" class="btn btn-outline" target="_blank" download>Nos Services</a>
+            <a href="contact.html" class="btn">Demander un devis</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="about-container">
+          <div class="about-image">
+            <img
+              src="assets/images/about-banner.jpg"
+              alt="Équipe COGETS CONGO"
+            />
+            <div class="about-badge">Depuis 2014</div>
+          </div>
+
+          <div class="about-content">
+            <span class="section-subtitle">Pourquoi nous choisir ?</span>
+            <h2 class="section-title">
+              Votre partenaire en solutions industrielles
+            </h2>
+            <p class="section-text">
+              Depuis sa création le 14 juin 2014, COGETS CONGO s'est imposée
+              comme une référence incontournable dans le domaine des travaux
+              industriels, aussi bien onshore qu'offshore.
+            </p>
+
+            <ul class="about-list">
+              <li class="about-item">
+                <div class="about-icon">
+                  <i class="fas fa-check"></i>
+                </div>
+                <div>
+                  <h4>INDUSTRIE PETROLIERE ET GAZIERE</h4>
+                  <p>Protection professionnelle des surfaces métalliques</p>
+                </div>
+              </li>
+
+              <li class="about-item">
+                <div class="about-icon">
+                  <i class="fas fa-check"></i>
+                </div>
+                <div>
+                  <h4>VENTE ET INTERIM</h4>
+                  <p>Mise à disposition d’experts pour interventions techniques en milieux exigeants</p>
+                </div>
+              </li>
+
+              <li class="about-item">
+                <div class="about-icon">
+                  <i class="fas fa-check"></i>
+                </div>
+                <div>
+                  <h4>CONSTRUCTION METALLIQUE ET STRUCTURALE</h4>
+                  <p>Conception et solutions adaptées aux environnements maritimes</p>
+                </div>
+              </li>
+            </ul>
+
+            <a href="qui_sommes.html" class="btn">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="section services-section" id="services">
+      <div class="container">
+        <span class="section-subtitle">Nos domaines d'expertise</span>
+        <h2 class="section-title">Services Professionnels</h2>
+        <p class="section-text">
+          COGETS CONGO intervient sur un large éventail de missions techniques,
+          allant du résinage et du sablage de surfaces, jusqu'à la plomberie
+          haute pression, en passant par des travaux spécialisés.
+        </p>
+
+        <div class="services-grid">
+          <!-- Service 1 -->
+          <div class="service-card">
+            <div class="service-image">
+              <img src="assets/images/project-3.jpg" alt="Résinage et sablage" />
+            </div>
+            <div class="service-content">
+              <span class="service-number">01</span>
+              <h3 class="service-title">RADIOGRAPHIE NUMERIQUE</h3>
+              <p class="service-text">
+                Utilisation de rayons X pour visulaliser l'intérieur des pièces et détecter des anomalies.
+              </p>
+              <a href="#" class="service-link">
+                En savoir plus <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="service-card">
+            <div class="service-image">
+              <img
+                src="assets/images/12.webp"
+                alt="Plomberie haute pression"
+              />
+            </div>
+            <div class="service-content">
+              <span class="service-number">02</span>
+              <h3 class="service-title">MAGNETOSCOPIE</h3>
+              <p class="service-text">
+                Détection de défauts de surface dans les matériaux ferromagnétiques à l'aide d'un champ magnétique. 
+              </p>
+              <a href="#" class="service-link">
+                En savoir plus <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="service-card">
+            <div class="service-image">
+              <img src="assets/images/13.jpg" alt="Travaux offshore" />
+            </div>
+            <div class="service-content">
+              <span class="service-number">03</span>
+              <h3 class="service-title">DYE PENETRANT</h3>
+              <p class="service-text">
+                Application d'un liquide pénétrant pour révéler des fissures ou des défauts de surface.
+              </p>
+              <a href="#" class="service-link">
+                En savoir plus <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="service-card">
+            <div class="service-image">
+              <img src="assets/images/lavage.jpg" alt="Travaux offshore" />
+            </div>
+            <div class="service-content">
+              <span class="service-number">04</span>
+              <h3 class="service-title">LAVAGE</h3>
+              <p class="service-text">
+                Opérations de lavage qui sont effectuées pour permettre l'inspection et l'évaluation des structures ou des équipements
+              </p>
+              <a href="#" class="service-link">
+                En savoir plus <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-image">
+              <img src="assets/images/ultrasons.webp" alt="Travaux offshore" />
+            </div>
+            <div class="service-content">
+              <span class="service-number">05</span>
+              <h3 class="service-title">ULTRASONS</h3>
+              <p class="service-text">Utilisation d'ondes ultrasons pour détecter des défauts internes dans le matériaux
+              </p>
+              <a href="#" class="service-link">
+                En savoir plus <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-image">
+              <img src="assets/images/hero-banner.jpg" alt="Travaux offshore" />
+            </div>
+            <div class="service-content">
+              <span class="service-number">06</span>
+              <h3 class="service-title">INDUSTRIE</h3>
+              <p class="service-text">Nous travaillons sur tous les systèmes avec du gaz inertes, eau avec addictif et le système avec la poudre. 
+              </p>
+              <a href="#" class="service-link">
+                En savoir plus <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="section features-section">
+      <div class="container">
+        <div class="features-container">
+          <!-- Feature 1 -->
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 class="feature-title">Sécurité</h3>
+            <p class="feature-text">
+              Nos interventions respectent les normes de sécurité les plus
+              strictes pour garantir la protection de tous.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <h3 class="feature-title">Qualité</h3>
+            <p class="feature-text">
+              Une qualité de service irréprochable avec des matériaux haut de
+              gamme et des techniques éprouvées.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3 class="feature-title">Réactivité</h3>
+            <p class="feature-text">
+              Intervention rapide sur tout le territoire avec une équipe
+              disponible 24h/24 pour les urgences.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="section projects-section">
+      <div class="container">
+        <span class="section-subtitle">Nos réalisations</span>
+        <h2 class="section-title">Projets Récents</h2>
+        <p class="section-text">
+          Découvrez quelques-unes de nos réalisations qui témoignent de notre
+          expertise et de notre engagement qualité.
+        </p>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card">
+            <div class="project-image">
+              <img src="assets/images/hero-banner.jpg" alt="Projet offshore" />
+            </div>
+            <div class="project-overlay">
+              <h3 class="project-title">Plateforme pétrolière</h3>
+              <p class="project-category">Revamping offshore</p>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card">
+            <div class="project-image">
+              <img
+                src="assets/images/project-1.jpg"
+                alt="Installation industrielle"
+              />
+            </div>
+            <div class="project-overlay">
+              <h3 class="project-title">Usine de traitement</h3>
+              <p class="project-category">Résinage industriel</p>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div class="project-image">
+              <img src="assets/images/6.png" alt="Chantier naval" />
+            </div>
+            <div class="project-overlay">
+              <h3 class="project-title">Chantier naval</h3>
+              <p class="project-category">Chaudronnerie</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center" style="margin-top: 40px">
+          <a href="galerie.html" class="btn">Voir tous nos projets</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-logo">COGETS CONGO</a>
+            <p class="footer-text">
+              Depuis sa création le 14 juin 2014, COGETS CONGO s'est imposée
+              comme une référence incontournable dans le domaine des travaux
+              industriels, aussi bien onshore qu'offshore.
+            </p>
+            <ul class="social-list">
+              <li>
+                <a href="#" class="social-link"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="social-link"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="social-link"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="social-link"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-list">
+            <h3 class="footer-list-title">Liens rapides</h3>
+            <ul>
+              <li><a href="index.html" class="footer-link">Accueil</a></li>
+              <li><a href="#services" class="footer-link">Services</a></li>
+              <li><a href="galerie.html" class="footer-link">Galerie</a></li>
+              <li>
+                <a href="qui_sommes.html" class="footer-link"
+                  >Qui sommes-nous</a
+                >
+              </li>
+              <li><a href="contact.html" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-list">
+            <h3 class="footer-list-title">Nos services</h3>
+            <ul>
+              <li><a href="#" class="footer-link">Résinage et sablage</a></li>
+              <li>
+                <a href="#" class="footer-link">Plomberie haute pression</a>
+              </li>
+              <li>
+                <a href="#" class="footer-link">Carrelage grillagé offshore</a>
+              </li>
+              <li>
+                <a href="#" class="footer-link">Soudure & Chaudronnerie</a>
+              </li>
+              <li><a href="#" class="footer-link">Revamping offshore</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-list">
+            <h3 class="footer-list-title">Contact</h3>
+            <ul>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> 634 Avenue de l'indépendance BP:1118- Pointe-Noire (Congo)
+              </li>
+              <li><i class="fas fa-phone-alt"></i> +242 05 042 98 93</li>
+              <li><i class="fas fa-phone-alt"></i> +242 06 656 16 59</li>
+              <li><i class="fas fa-envelope"></i> contact@cogets-cg.com</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">
+            &copy; 2025 COGETS CONGO. Tous droits réservés par
+            <a href="#" class="copyright-link">YekolaTech</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- SCRIPT POUR LE RESPONSIVE ET LE MENU MOBILE -->
+    <script>
+      // Menu mobile
+      const navToggle = document.getElementById("navToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const closeMenu = document.getElementById("closeMenu");
+      const menuOverlay = document.getElementById("menuOverlay");
+
+      // Ouvrir le menu mobile
+      navToggle.addEventListener("click", () => {
+        mobileMenu.classList.add("active");
+        menuOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
+
+      // Fermer le menu mobile
+      function closeMobileMenu() {
+        mobileMenu.classList.remove("active");
+        menuOverlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      closeMenu.addEventListener("click", closeMobileMenu);
+      menuOverlay.addEventListener("click", closeMobileMenu);
+
+      // Fermer le menu quand on clique sur un lien
+      const navLinks = document.querySelectorAll(".mobile-menu .navbar-link");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
+      // Fermer le menu avec la touche Échap
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mobileMenu.classList.contains("active")) {
+          closeMobileMenu();
+        }
+      });
+    </script>
+  </body>
+</html>
